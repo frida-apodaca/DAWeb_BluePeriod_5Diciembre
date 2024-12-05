@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block cuerpo%}
+<div class="row">
+    <div class="col-md-4 offset-md-4"> <!-- offset-md-4 para centrar el contenido --> 
+        <!-- inicio de la tarjeta card --> 
+        <div class="card">
+            <div class="card-body">
+
+                <form action="/editarProducto/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                    <input type="number" id="numid_producto" name="numid_producto" class="form-control"
+                    value="{{misproductos.id_producto}}" required>
+                    </div>
+
+                    <div class="form-group py-3">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                    value="{{misproductos.nombre}}" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                    <input type="number" id="txttamaño" name="txttamaño" class="form-control"
+                    value="{{misproductos.tamaño}}" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="number" id="numprecio" name="numprecio" class="form-control"
+                        value="{{misproductos.precio}}" required>
+                    </div>
+                  
+                    <div class="form-group py-3">
+                        <input type="text" id="txtcalidad" name="txtcalidad" class="form-control"
+                        value="{{misproductos.calidad}}" required>
+                        </div>
+
+                    <div class="form-group py-2">
+                        <input type="number" id="numcantidad" name="numcantidad" class="form-control"
+                        value="{{misproductos.cantidad}}" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="number" id="numpeso" name="numpeso" class="form-control"
+                        value="{{misproductos.peso}}" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+
+                </div>
+            </div>
+        <!-- fin de la tarjeta card -->
+    </div> <!-- la columna -->
+</div> <!-- la fila -->
+{%endblock%}

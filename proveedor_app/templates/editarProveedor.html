@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block cuerpo%}
+<div class="row">
+    <div class="col-md-4 offset-md-4"> <!-- offset-md-4 para centrar el contenido --> 
+        <!-- inicio de la tarjeta card --> 
+        <div class="card">
+            <div class="card-body">
+
+                <form action="/editarProveedor/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                    <input type="text" id="numid_proveedor" name="numid_proveedor" class="form-control"
+                    value="{{misproveedores.id_proveedor}}" readonly required>
+                    </div>
+
+                    <div class="form-group py-3">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                    value="{{misproveedores.nombre}}" required>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtproductos" name="txtproductos" class="form-control"
+                        value="{{misproveedores.productos}}" required>
+                        </div>
+
+                    <div class="form-group py-2">
+                    <input type="text" id="numcantidad_productos" name="numcantidad_productos" class="form-control"
+                    value="{{misproveedores.cantidad_productos}}" required>
+                    </div>
+                    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                        value="{{misproveedores.direccion}}" required>
+                        </div>
+
+                        <div class="form-group py-3">
+                            <input type="date" id="txtfecha_contratacion" name="txtfecha_contratacion" class="form-control"
+                            value="{{fecha_contratacion}}" required>
+                            </div>
+
+                            <div class="form-group py-2">
+                                <input type="text" id="numsueldo" name="numsueldo" class="form-control"
+                                value="{{misproveedores.sueldo}}" required>
+                                </div>
+
+                    <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+
+                </div>
+            </div>
+        <!-- fin de la tarjeta card -->
+    </div> <!-- la columna -->
+</div> <!-- la fila -->
+{%endblock%}
