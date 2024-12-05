@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block cuerpo%}
+<div class="row">
+    <div class="col-md-4 offset-md-4"> <!-- offset-md-4 para centrar el contenido --> 
+        <!-- inicio de la tarjeta card --> 
+        <div class="card">
+            <div class="card-body">
+
+                <form action="/editarLocal/" method="POST"> {% csrf_token %}
+                    <div class="form-group">
+                    <input type="number" id="numid_local" name="numid_local" class="form-control"
+                    value="{{mislocales.id_Local}}" required>
+                    </div>
+
+                    <div class="form-group py-3">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                    value="{{mislocales.nombre}}" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                    <input type="text" id="numcapacidad" name="numcapacidad" class="form-control"
+                    value="{{mislocales.capacidad}}" required>
+                    </div>
+                    
+                    <div class="form-group py-3">
+                        <input type="text" id="txtempleado" name="txtempleado" class="form-control"
+                        value="{{mislocales.empleados}}" required>
+                        </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtdueño" name="txtdueño" class="form-control"
+                        value="{{mislocales.dueño}}" required>
+                    </div>
+
+                    <div class="form-group py-3">
+                        <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                        value="{{mislocales.direccion}}" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                        <input type="number" id="numtelefono" name="numtelefono" class="form-control"
+                        value="{{mislocales.telefono}}" required>
+                    </div>
+
+                    <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </form>
+
+                </div>
+            </div>
+        <!-- fin de la tarjeta card -->
+    </div> <!-- la columna -->
+</div> <!-- la fila -->
+{%endblock%}

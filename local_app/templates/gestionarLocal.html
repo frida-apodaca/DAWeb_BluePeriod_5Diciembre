@@ -1,0 +1,100 @@
+{%extends "base.html"%}
+{% load static %}
+{% block cuerpo%}
+
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1>Mamá</h1>
+    
+            <div class="card">
+              <div class="card-body">
+                <form action="/registrarLocal/" method="POST"> {% csrf_token %}
+                  <div class="form-group">
+                    <input type="number" id="numid_local" name="numid_local" class="form-control"
+                    placeholder="ID Local" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                    placeholder="Nombre Local" required>
+                  </div>
+
+                  <div class="form-group py-2">
+                    <input type="text" id="numcapacidad" name="numcapacidad" class="form-control"
+                    placeholder="capacidad Local" required>
+                  </div>
+                  
+                  <div class="form-group py-3">
+                    <input type="text" id="txtempleado" name="txtempleado" class="form-control"
+                    placeholder="Empleados Local" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtdueño" name="txtdueño" class="form-control"
+                    placeholder="Dueño Local" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                    placeholder="Direccion Local" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numtelefono" name="numtelefono" class="form-control"
+                    placeholder="telefono local" required>
+                  </div>
+                  
+                  <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+        </div>
+        
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1>Inventario Local</h1>
+            <img class="w-50" src="{% static 'img/papeleria.jpg' %}" alt="papeleria" width="400" height="300">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">id_local</th>
+                    <th scope="col">nombre</th>
+                    <th scope="col">capacidad</th>
+                    <th scope="col">empleados</th>
+                    <th scope="col">dueño</th>
+                    <th scope="col">direccion</th>
+                    <th scope="col">telefono</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for l in mislocales%}
+                      <tr>
+                        <td>
+                          {{forloop.counter}}
+                        </td>
+                        <td>{{l.id_local}}</td>
+                        <td>{{l.nombre}}</td>
+                        <td>{{l.capacidad}}</td>
+                        <td>{{l.empleados}}</td>
+                        <td>{{l.dueño}}</td>
+                        <td>{{l.direccion}}</td>
+                        <td>{{l.telefono}}</td>
+                        <td> <a href="seleccionarLocal/{{l.id_Local}}" class="btn btn-success">Editar</a></td>
+                        <td> <a href="borrarLocal/{{l.id_Local}}" class="btn btn-danger">Borrar</a></td>
+                      </tr>
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    
+        </div>
+    </div>
+
+
+    
+{%endblock%}

@@ -1,0 +1,107 @@
+{%extends "base.html"%}
+{% load static %}
+{% block cuerpo%}
+
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1>Mamá</h1>
+    
+            <div class="card">
+              <div class="card-body">
+                <form action="/registrarEmpleado/" method="POST"> {% csrf_token %}
+                  <div class="form-group">
+                    <input type="number" id="numcodigo" name="numcodigo" class="form-control"
+                    placeholder="ID Empleado" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtnombre" name="txtnombre" class="form-control"
+                    placeholder="Nombre Empleado" required>
+                  </div>
+
+                  <div class="form-group py-2">
+                    <input type="date" id="txtfecha_nacimiento" name="txtfecha_nacimiento" class="form-control"
+                    placeholder="fecha nacimiento Empleado" required>
+                  </div>
+                  
+                  <div class="form-group py-3">
+                    <input type="number" id="numsueldo" name="numsueldo" class="form-control"
+                    placeholder="sueldo Empleado" required>
+                  </div>
+                  
+                  <div class="form-group py-3">
+                    <input type="text" id="txtsexo" name="txtsexo" class="form-control"
+                    placeholder="sexo Empleado" required>
+                  </div>
+                  
+                  <div class="form-group py-3">
+                    <input type="number" id="numtelefono" name="numtelefono" class="form-control"
+                    placeholder="telefono Empleado" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="text" id="txtdireccion" name="txtdireccion" class="form-control"
+                    placeholder="direccion Empleado" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="date" id="txfecha_ingreso" name="txtfecha_ingreso" class="form-control"
+                    placeholder="fecha de ingreso Empleado" required>
+                  </div>
+
+                  <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+        </div>
+        
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1>Inventario Empleados</h1>
+            <img class="w-50" src="{% static 'img/empleados.jpg' %}" alt="papeleria" width="400" height="300">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">id_Empleado</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">fecha_nacimiento</th>
+                    <th scope="col">sueldo</th>
+                    <th scope="col">sexo</th>
+                    <th scope="col">telefono</th>
+                    <th scope="col">direccion</th>
+                    <th scope="col">fecha_ingreso</th>
+                    
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for m in misempleados %}
+                      <tr>
+                        <td>
+                          {{forloop.counter}}
+                        </td>
+                        <td>{{m.id_Empleado}}</td>
+                        <td>{{m.nombre}}</td>
+                        <td>{{m.fecha_nacimiento}}</td>
+                        <td>{{m.sueldo}}</td>
+                        <td>{{m.sexo}}</td>
+                        <td>{{m.telefono}}</td>
+                        <td>{{m.direccion}}</td>
+                        <td>{{m.fecha_ingreso}}</td>
+                        <td> <a href="seleccionarEmpleado/{{m.id_empleado}}" class="btn btn-success">Editar</a></td>
+                        <td> <a href="borrarEmpleado/{{m.id_empleado}}" class="btn btn-danger">Borrar</a></td>
+                      </tr>
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    
+        </div>
+    </div>
+
+
+    
+{%endblock%}
