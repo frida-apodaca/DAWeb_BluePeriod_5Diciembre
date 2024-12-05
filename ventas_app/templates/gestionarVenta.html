@@ -1,0 +1,92 @@
+{%extends "base.html"%}
+{% load static %}
+{% block cuerpo%}
+
+    <div class="row">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1>Mamá</h1>
+    
+            <div class="card">
+              <div class="card-body">
+                <form action="/registrarVenta/" method="POST"> {% csrf_token %}
+                  <div class="form-group">
+                    <input type="number" id="numid_venta" name="numid_venta" class="form-control"
+                    placeholder="ID Venta" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numid_empleado" name="numid_empleado" class="form-control"
+                    placeholder="ID Empleado" required>
+                  </div>
+
+                  <div class="form-group py-3">
+                    <input type="number" id="numid_cliente" name="numid_cliente" class="form-control"
+                    placeholder="ID Cliente" required>
+                  </div>
+
+                  <div class="form-group py-2">
+                    <input type="date" id="txtfecha_venta" name="txtfecha_venta" class="form-control"
+                    placeholder="fecha Venta" required>
+                  </div>
+                  
+                  <div class="form-group py-3">
+                    <input type="number" id="numcantidad" name="numcantidad" class="form-control"
+                    placeholder="cantidad de Venta" required>
+                  </div>
+                  
+                  <div class="form-group py-3">
+                    <input type="number" id="numtotal" name="numtotal" class="form-control"
+                    placeholder="total Venta" required>
+                  </div>
+
+                  <div class="form-group py-2">
+                    <button type="submit" class="btn btn-primary">Guardar</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+
+        </div>
+        
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-4">
+            <h1>Inventario de Ventas</h1>
+            <img class="w-50" src="{% static 'img/ventas.jpg' %}" alt="papeleria" width="400" height="300">
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">id_venta</th>
+                    <th scope="col">id_empleado</th>
+                    <th scope="col">id_cliente</th>
+                    <th scope="col">fecha_venta</th>
+                    <th scope="col">cantidad</th>
+                    <th scope="col">total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for v in misventas %}
+                      <tr>
+                        <td>
+                          {{forloop.counter}}
+                        </td>
+                        <td>{{v.id_venta}}</td>
+                        <td>{{v.id_empleado}}</td>
+                        <td>{{v.id_cliente}}</td>
+                        <td>{{v.fecha_venta}}</td>
+                        <td>{{v.cantidad}}</td>
+                        <td>{{v.total}}</td>
+                        <td> <a href="seleccionarVenta/{{v.id_venta}}" class="btn btn-success">Editar</a></td>
+                        <td> <a href="borrarVenta/{{v.id_venta}}" class="btn btn-danger">Borrar</a></td>
+                      </tr>
+                    {% endfor %}
+
+                </tbody>
+              </table>
+        </div>
+    
+        </div>
+    </div>
+
+
+    
+{%endblock%}
